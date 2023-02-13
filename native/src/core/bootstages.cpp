@@ -323,20 +323,20 @@ static void post_fs_data() {
         goto early_abort;
     }
 
-    if (getprop("persist.sys.safemode", true) == "1" ||
-        getprop("ro.sys.safemode") == "1" || check_key_combo()) {
+//    if (getprop("persist.sys.safemode", true) == "1" ||
+//        getprop("ro.sys.safemode") == "1" || check_key_combo()) {
         boot_state |= FLAG_SAFE_MODE;
         // Disable all modules and denylist so next boot will be clean
         disable_modules();
         disable_deny();
-    } else {
-        exec_common_scripts("post-fs-data");
-        db_settings dbs;
-        get_db_settings(dbs, ZYGISK_CONFIG);
-        zygisk_enabled = dbs[ZYGISK_CONFIG];
-        initialize_denylist();
-        handle_modules();
-    }
+//    } else {
+//        exec_common_scripts("post-fs-data");
+//        db_settings dbs;
+//        get_db_settings(dbs, ZYGISK_CONFIG);
+//        zygisk_enabled = dbs[ZYGISK_CONFIG];
+//        initialize_denylist();
+//        handle_modules();
+//    }
 
 early_abort:
     // We still do magic mount because root itself might need it
